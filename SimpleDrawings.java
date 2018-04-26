@@ -172,6 +172,9 @@ class MyOctagonal extends MyDrawing{
 		Graphoics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(getLineWidth()));
 		g2.setColor(getFillColor());
+		g2.fillPolygon(xw,yw,n);
+		g2.setColor(getLineColor());
+		g2.drawPolygon(xw,yw,n);
 
 	}
 }
