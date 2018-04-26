@@ -142,12 +142,6 @@ class MyOctagonal extends MyDrawing{
 		setLocation(xpt,ypt);
 	}
 
-	void calPosition(int x[], int y[], int n) {
-		for (int i = 0;i < n;i++) {
-			x[i] = (int)(w/2)
-			y[i]
-		}
-	}
 
 	public void draw(Graphics g) {
 		int x = getX();
@@ -168,7 +162,12 @@ class MyOctagonal extends MyDrawing{
 			h *= -1;
 		}
 
-		calPosition();
+		double Del = Math.PI/2;
+		for (int i = 0;i < n;i++) {
+			xw[i] = (int)(r * Math.cos(2.0 * i * Math.PI / n + Del) + x);
+			yw[i] = - (int)(r * Math.sin(2.0 * i Math.PI / n + Del)) + y;
+		}
+
 
 		Graphoics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(getLineWidth()));
@@ -188,5 +187,3 @@ class MyCanvas extends JPanel{
 
 
 }
-
-
