@@ -12,7 +12,7 @@ public class MyApplication extends JFrame {
     this.getContentPane().add(jp);
 
     MyCanvas canvas = new MyCanvas();
-    for (int i=0;i<8){
+    for (int i=0;i<8;i++){
       canvas.addDrawing(new MyOval(20, 20));
     }
     jp.add(BorderLayout.CENTER,canvas);
