@@ -6,7 +6,7 @@ public class MyCanvas extends JPanel {
   // 各図形を格納する Vector
   private Vector<MyDrawing> drawing;
 
-  private MyCanvas(){
+  public MyCanvas(){
     setBackground(Color.white);
 
     drawings = new Vector<MyDrawing>();

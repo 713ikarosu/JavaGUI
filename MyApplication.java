@@ -13,7 +13,7 @@ public class MyApplication extends JFrame {
 
     MyCanvas canvas = new MyCanvas();
     for (int i=0;i<8;i++){
-      canvas.addDrawing(new MyOval(20, 20));
+      canvas.addDrawing(new MyRectangle(20 + i*40, 20 + i*30)); // 40,30ずつずらして描写
     }
     jp.add(BorderLayout.CENTER,canvas);
 
