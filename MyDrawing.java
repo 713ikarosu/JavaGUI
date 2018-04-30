@@ -2,27 +2,26 @@ import java.awt.*;
 import javax.swing.*;
 
 // メインウィンドウを表すクラス
-public class SimpleDrawings extends JFrame{
-	// SimpleDrawings のコンストラクタ
-	public SimpleDrawings() {
-		super("My Painter");
-
-		JPanel jp = new JPanel(new BorderLayout());
-		getContentPane().add(jp);
-
-		MyCanvas canvas = new MyCanvas();
-		jp.add(BorderLayout.CENTER,canvas);
-
-		setSize(new Dimension(360,280));
-		setVisible(true);
-	}
-
-	public static void main(String[] args) {
-		// TODO 自動生成されたメソッド・スタブ
-		new SimpleDrawings();
-	}
-
-}
+// public class SimpleDrawings extends JFrame{
+// 	// SimpleDrawings のコンストラクタ
+// 	public SimpleDrawings() {
+// 		super("My Painter");
+//
+// 		JPanel jp = new JPanel(new BorderLayout());
+// 		getContentPane().add(jp);
+//
+// 		MyCanvas canvas = new MyCanvas();
+// 		jp.add(BorderLayout.CENTER,canvas);
+//
+// 		setSize(new Dimension(360,280));
+// 		setVisible(true);
+// 	}
+//
+// 	public static void main(String[] args) {
+// 		// TODO 自動生成されたメソッド・スタブ
+// 		new SimpleDrawings();
+// 	}
+// }
 
 public class MyDrawing {
 	private int x, y, w, h; // X座標, Y座標, 幅, 高さ
@@ -177,16 +176,4 @@ class MyOctagonal extends MyDrawing{
 		g2.drawPolygon(xw,yw,n);
 
 	}
-}
-
-class MyCanvas extends JPanel{
-	MyCanvas(){
-		setBackground(Color.white);
-	}
-
-	public void paint() {
-
-	}
-
-
 }
