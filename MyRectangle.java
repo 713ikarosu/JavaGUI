@@ -1,5 +1,7 @@
-public class MyRectagle extends MyDrawing {
-	public MyRectagle(int xpt, int ypt) {
+import java.awt.*;
+
+public class MyRectangle extends MyDrawing {
+	public MyRectangle(int xpt, int ypt) {
 		super();
 		setLocation(xpt,ypt);
 	}
