@@ -12,9 +12,10 @@ public class MyApplication extends JFrame {
     this.getContentPane().add(jp);
 
     MyCanvas canvas = new MyCanvas();
-    for (int i=0;i<8;i++){
-      canvas.addDrawing(new MyRectangle(20 + i*40, 20 + i*30)); // 40,30ずつずらして描写
-    }
+    // for (int i=0;i<8;i++){
+    //   canvas.addDrawing(new MyRectangle(20 + i*40, 20 + i*30)); // 40,30ずつずらして描写
+    // }
+    canvas.addDrawing(new MyOval(20,40));
     jp.add(BorderLayout.CENTER,canvas);
 
     // WindowEvent リスナを設定(無名クラスを利用している)
