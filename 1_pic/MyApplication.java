@@ -14,8 +14,17 @@ public class MyApplication extends JFrame {
     MyCanvas canvas = new MyCanvas();
     // for (int i=0;i<8;i++){
     //   canvas.addDrawing(new MyRectangle(20 + i*40, 20 + i*30)); // 40,30ずつずらして描写
-    // }
-    canvas.addDrawing(new MyOval(20,40));
+
+    // } 引数を指定し，楕円を生成
+    canvas.addDrawing(new MyOval(60,60,60,30,Color.black,Color.blue));
+    jp.add(BorderLayout.CENTER,canvas);
+
+    // 多角形を生成
+    canvas.addDrawing(new MyOctagonal(120,120,30));
+    jp.add(BorderLayout.CENTER,canvas);
+
+    // 立体的な短形を生成
+    canvas.addDrawing(new My3DRect(180,180,60,60));
     jp.add(BorderLayout.CENTER,canvas);
 
     // WindowEvent リスナを設定(無名クラスを利用している)

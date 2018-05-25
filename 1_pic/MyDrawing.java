@@ -5,10 +5,12 @@ public class MyDrawing {
 	private int x, y, w, h; // X座標, Y座標, 幅, 高さ
 	private Color lineColor, fillColor; //線の色, 塗り色
 	private int lineWidth; // 線の太さ
+	private int len; //外接円の半径の長さ(多角形)
 
 	public MyDrawing() {
 		x = y = 0;
 		w = h = 40;
+		len = 10;
 		lineColor = Color.black;
 		fillColor = Color.white;
 		lineWidth = 1;
@@ -36,6 +38,10 @@ public class MyDrawing {
 		this.h = h;
 	}
 
+	public void setLen(int len){
+		this.len = len;
+	}
+
 	public int getX() {
 		// オブジェクトの X 位置を取得する処理を書く
 		return this.x;
@@ -54,6 +60,11 @@ public class MyDrawing {
 	public int getH() {
 		// オブジェクトの高さを取得する処理を書く
 		return this.h;
+	}
+
+	public int getLen(){
+		// オブジェクトの辺の長さを取得する
+		return this.len;
 	}
 
 	public int getLineWidth() {

@@ -1,7 +1,7 @@
 import java.awt.*;
 
-public class MyOval extends MyDrawing{
-	public MyOval(int xpt, int ypt) {
+public class MyRectangle extends MyDrawing {
+	public MyRectangle(int xpt, int ypt) {
 		super();
 		setLocation(xpt,ypt);
 	}
@@ -12,11 +12,11 @@ public class MyOval extends MyDrawing{
 		int w = getW();
 		int h = getH();
 
-		// 高さや横幅が負の時の為の処理
+		// 高さや横幅が負のときの処理
 		if (w < 0) {
 			x += w;
 			w *= -1;
-		} if (h < 0 ) {
+		} if (h  < 0) {
 			y += h;
 			h *= -1;
 		}
@@ -24,8 +24,8 @@ public class MyOval extends MyDrawing{
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(getLineWidth()));
 		g2.setColor(getFillColor());
-		g2.fillOval(x, y, w, h);
+		g2.fillRect(x,y,w,h);
 		g2.setColor(getLineColor());
-		g2.drawOval(x, y, w, h);
+		g2.drawRect(x,y,w,h);
 	}
 }
