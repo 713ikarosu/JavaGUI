@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 public class MyButton extends JFrame {
   public MyButton() {
-    super("MyButtonTest");
+    super("MyButton");
 
     // FlowLayout を使って部品を左から配置するパネルを作成
     JPanel jp = new JPanel();
@@ -20,15 +20,15 @@ public class MyButton extends JFrame {
     circleButton.addActionListener(new CircleButtonListener());
     jp.add(circleButton);
 
-    Button triangleButton = new Button("Triangle");
-    triangleButton.addActionListener(new TriangleButtonListener());
-    jp.add(triangleButton);
+    Button threeDRectangleButton = new Button("threeDRectangel");
+    threeDRectangleButton.addActionListener(new threeDRectangleButtonListener());
+    jp.add(threeDRectangleButton);
 
-    setSize(300,250);
+    setSize(350,300);
   }
 
   public static void main(String[] args){
-    MyButtonTest2 myapp = new MyButtonTest2();
+    MyButton myapp = new MyButton();
     myapp.setVisible(true);
   }
 }
@@ -50,9 +50,9 @@ class CircleButtonListener implements ActionListener {
 }
 
 // Triangle ボタンのイベントリスナ
-class TriangleButtonListener implements ActionListener {
+class threeDRectangleButtonListener implements ActionListener {
   // Triangle ボタンが押されたときの処理
   public void actionPerformed(ActionEvent e) {
-    JOptionPane.showMessageDialog(null, "Triangle is pressed!");
+    JOptionPane.showMessageDialog(null, "3DRectangle is pressed!");
   }
 }
