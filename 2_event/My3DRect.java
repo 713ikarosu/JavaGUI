@@ -1,12 +1,12 @@
 import java.awt.*;
 
 class My3DRect extends MyDrawing {
-  public My3DRect(int xpt, int ypt, Color lcolor, Color fcolor) {
+  public My3DRect(int xpt, int ypt) {
 		super();
 		setLocation(xpt,ypt);
-		setSize(wpt,hpt); // 大きさを指定
-    setLineColor(lcolor); // 線の色を指定
-    setfillColor(fcolor); // 塗りつぶしの色を指定
+		// setSize(wpt,hpt); // 大きさを指定
+    // setLineColor(lcolor); // 線の色を指定
+    // setfillColor(fcolor); // 塗りつぶしの色を指定
 	}
 
   public void draw(Graphics g) {
