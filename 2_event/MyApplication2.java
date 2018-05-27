@@ -40,7 +40,8 @@ class MyMouseAdapter extends MouseAdapter{
 
   // マウスがクリックされたときの処理
   public void mousePressed(MouseEvent e){
-    canvas.addDrawing(new MyRectangle(e.getX(),e.getY()));
+    // canvas.addDrawing(new MyRectangle(e.getX(),e.getY()));
+    canvas.addDrawing(new My3DRect(e.getX(),e.getY()));
 
     // キャンパスの再描画命令
     canvas.repaint();
