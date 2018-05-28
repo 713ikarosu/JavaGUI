@@ -1,12 +1,12 @@
 import java.awt.*;
 
 public class MyOval extends MyDrawing{
-	public MyOval(int xpt, int ypt, int wpt, int hpt, Color lcolor, Color fcolor) {
+	public MyOval(int xpt, int ypt) {
 		super();
 		setLocation(xpt,ypt);
-		setSize(wpt,hpt);
-		setLineColor(lcolor); // 線の色を指定
-    setfillColor(fcolor); // 塗りつぶしの色を指定
+		// setSize(wpt,hpt);
+		// setLineColor(lcolor); // 線の色を指定
+    // setfillColor(fcolor); // 塗りつぶしの色を指定
 	}
 
 	public void draw(Graphics g) {

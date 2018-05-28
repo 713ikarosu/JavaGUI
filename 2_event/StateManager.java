@@ -3,13 +3,13 @@ public class StateManager extends State{
   State state;
   public StateManager(MyCanvas canvas){
     this.canvas = canvas;
-    setState(null);
+    setState(new RectState(this.state));
   }
   public void setState(State state){
     this.state = state;
   }
   public void mouseDown(int x,int y){
-    state.mouseDown(x,y);
+    this.state.mouseDown(x,y);
   }
   public void mouseUp(int x,int y){
     state.mouseUp(x,y);

@@ -19,8 +19,8 @@ public class MyApplication2 extends JFrame{
 
     RectButton rectButton = new RectButton(stateManager);
     jp.add(rectButton);
-    // OvalButton ovalButton = new OvalButton(stateManager);
-    // jp.add(ovalButton);
+    OvalButton ovalButton = new OvalButton(stateManager);
+    jp.add(ovalButton);
 
     getContentPane().setLayout(new BorderLayout());
     getContentPane().add(jp, BorderLayout.NORTH);
@@ -29,6 +29,7 @@ public class MyApplication2 extends JFrame{
     canvas.addMouseListener(new MouseAdapter(){
       // 現在の状態の mouseDown 処理の呼び出し
       public void mousePressed(MouseEvent e){
+        System.out.println("Pressed");
         stateManager.mouseDown(e.getX(),e.getY());
       }
     });
