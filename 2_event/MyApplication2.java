@@ -69,7 +69,7 @@ public class MyApplication2 extends JFrame{
 //     canvas.repaint();
 //   }
 // }
-//
+// // MyApplication2〜以前の姿〜
 // import java.awt.*;
 // import java.awt.event.*;
 // import javax.swing.*;

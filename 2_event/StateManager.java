@@ -1,9 +1,15 @@
 public class StateManager implements State{
-  public void StaetManager(MyCanvas canvas){
-
+  MyCanvas canvas;
+  public void StateManager(MyCanvas canvas){
+    this.canvas = canvas;
   }
-
-  public void mouseDown(int x,int y){}
+  // マウスが押されたとき
+  public void mouseDown(int x,int y){
+    canvas.addDrawing()
+  }
+  // マウスが離されたとき
   public void mouseUp(int x,int y){}
+  // マウスがドラッグされたとき
   public void mouseDrag(int x,int y){}
+  public void setState(State state){}
 }
