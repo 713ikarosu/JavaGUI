@@ -6,7 +6,7 @@ public class RectState extends State {
   }
 
   public void mouseDown(int x,int y){
-    stateManager.addDrawing(new MyRectangle(x.y));
+    stateManager.addDrawing(new MyRectangle(x,y));
   }
 
   public void mouseUp(int x,int y){}

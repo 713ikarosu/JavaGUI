@@ -24,12 +24,13 @@ public class MyRectangle extends MyDrawing {
 		Graphics2D g2 = (Graphics2D) g;
 
 		// 破線か否かでストロークを変更
-		if (getDashed()){
-			g2.setStroke(new MyDashStroke(getLineWidth()));
-		} else {
-			g2.setStroke(new BasicStroke(getLineWidth()));
-		}
+		// if (getDashed()){
+		// 	g2.setStroke(new MyDashStroke(getLineWidth()));
+		// } else {
+		// 	g2.setStroke(new BasicStroke(getLineWidth()));
+		// }
 
+		g2.setStroke(new BasicStroke(getLineWidth()));
 
 		g2.setColor(getFillColor());
 		g2.fillRect(x,y,w,h);
