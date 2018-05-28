@@ -15,22 +15,7 @@ public class RectButton extends JButton {
 
   class RectListener implements ActionListener {
     public void actionPerformed(ActionEvent e){
-      stateManager.setState(new RectState(stateManager()));
+      stateManager.setState(new RectState(stateManager));
     }
   }
-}
-
-public class RectState implements State {
-  StateManager stateManager;
-
-  public RectState(StateManager stateManager){
-    this.stateManager = stateManager;
-  }
-
-  public void mouseDown(int x,int y){
-    stateManager.addDrawing(new MyRectangle(x.y));
-  }
-
-  public void mouseUp(int x,int y){}
-  public void mouseDrag(int x,int y){}
 }
