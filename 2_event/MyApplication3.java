@@ -17,12 +17,12 @@ public class MyApplication3 extends JFrame{
 
     stateManager = new StateManager(canvas);
 
-    // RectButton rectButton = new RectButton(stateManager);
-    // jp.add(rectButton);
     OvalButton ovalButton = new OvalButton(stateManager);
     jp.add(ovalButton);
     Rect3DButton rect3DButton = new Rect3DButton(stateManager);
     jp.add(rect3DButton);
+    OctaButton octaButton = new OctaButton(stateManager);
+    jp.add(octaButton);
 
     getContentPane().setLayout(new BorderLayout());
     getContentPane().add(jp, BorderLayout.NORTH);
@@ -74,7 +74,7 @@ public class MyApplication3 extends JFrame{
   }
 
   public Dimension getPreferredSize(){
-    return new Dimension(300,400);
+    return new Dimension(350,450);
   }
 
   public static void main(String[] args){
