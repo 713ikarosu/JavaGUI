@@ -1,10 +1,10 @@
 import java.awt.*;
 
 public class MyOval extends MyDrawing{
-	public MyOval(int xpt, int ypt) {
+	public MyOval(int xpt, int ypt, int wpt, int hpt) { // 課題2-1の時は，x,y 以外は初期値を利用
 		super();
 		setLocation(xpt,ypt);
-		// setSize(wpt,hpt);
+		setSize(wpt,hpt);
 		// setLineColor(lcolor); // 線の色を指定
     // setfillColor(fcolor); // 塗りつぶしの色を指定
 	}
