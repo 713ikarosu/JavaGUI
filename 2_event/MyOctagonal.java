@@ -34,6 +34,19 @@ class MyOctagonal extends MyDrawing{
 		}
 
 		Graphics2D g2 = (Graphics2D) g;
+		if(getShadow()){
+			int x2[] = new int[n];
+			int y2[] = new int[n];
+			for (int i = 0;i < n;i++){
+				x2[i] = xw[i]+10;
+				y2[i] = yw[i]+10;
+			}
+			g2.setStroke(new BasicStroke(getLineWidth()));
+			g2.setColor(Color.black);
+			g2.fillPolygon(x2,y2,n);
+			g2.setColor(Color.black);
+			g2.drawPolygon(x2,y2,n);
+		}
 		g2.setStroke(new BasicStroke(getLineWidth()));
 		g2.setColor(getFillColor());
 		g2.fillPolygon(xw,yw,n);

@@ -1,15 +1,16 @@
-public class Rect3DState extends State {
+public class ShadowState extends State {
   StateManager stateManager;
+  MyOval oval;
+  MyOctagonal octa;
   My3DRect rect3d;
   int x1, y1;
 
-  public Rect3DState(StateManager stateManager){
+  public ShadowState(StateManager stateManager){
     this.stateManager = stateManager;
   }
 
   public void mouseDown(int x,int y){
     rect3d = new My3DRect(x,y,0,0);
-    rect3d.isShadow = stateManager.shadowState; // isShadow 更新
     stateManager.addDrawing(rect3d);
     x1 = x;
     y1 = y;

@@ -25,6 +25,15 @@ class My3DRect extends MyDrawing {
 		}
 
 		Graphics2D g2 = (Graphics2D) g;
+    if(getShadow()){
+      int x2 = x+10;
+			int y2 = y+10;
+      g2.setStroke(new BasicStroke(getLineWidth()));
+  		g2.setColor(Color.black);
+  		g2.fill3DRect(x2, y2, w, h, true);
+  		g2.setColor(Color.black);
+  		g2.draw3DRect(x2, y2, w, h, true);
+    }
 		g2.setStroke(new BasicStroke(getLineWidth()));
 		g2.setColor(getFillColor());
 		g2.fill3DRect(x, y, w, h, true);

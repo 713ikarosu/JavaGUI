@@ -7,7 +7,7 @@ public class MyApplication3 extends JFrame{
   MyCanvas canvas;
 
   public MyApplication3(){
-    super("My Painter");
+    super("My PainterApp");
 
     canvas = new MyCanvas();
     canvas.setBackground(Color.white);
@@ -17,12 +17,18 @@ public class MyApplication3 extends JFrame{
 
     stateManager = new StateManager(canvas);
 
+    // ボタン配置
     OvalButton ovalButton = new OvalButton(stateManager);
     jp.add(ovalButton);
     Rect3DButton rect3DButton = new Rect3DButton(stateManager);
     jp.add(rect3DButton);
     OctaButton octaButton = new OctaButton(stateManager);
     jp.add(octaButton);
+
+    // checkbox 追加
+    JCheckBox shadowCheck = new JCheckBox("dropShadow");
+    shadowCheck.addItemListener(new ShadowCheckListener(stateManager));
+    jp.add(shadowCheck);
 
     getContentPane().setLayout(new BorderLayout());
     getContentPane().add(jp, BorderLayout.NORTH);
@@ -43,28 +49,6 @@ public class MyApplication3 extends JFrame{
       }
     });
 
-    // class MyMouseAdapter2 extends MouseAdapter {
-    //   private MyCanvas canvas;
-    //
-    //   public MyMouseAdapter2(MyCanvas canvas) {
-    //     this.canvas = canvas;
-    //   }
-    //
-    //   // 現在の状態の mouseDown 処理の呼び出し
-    //   public void mousePressed(MouseEvent e){
-    //     stateManager.mouseDown(e.getX(),e.getY());
-    //   }
-    //
-    //   // 現在の状態の mouseDrag 処理の呼び出し
-    //   public void mouseDragged(MouseEvent e){
-    //     stateManager.mouseDrag(e.getX(),e.getY());
-    //     System.out.println("dragged.");
-    //   }
-    // }
-    //
-    // MyMouseAdapter2 ma = new MyMouseAdapter2(canvas);
-    // canvas.addMouseListener(ma);
-
     this.addWindowListener(new WindowAdapter(){
       // ウィンドウ閉じたら終わり
       public void windowClosing(WindowEvent e){
@@ -74,7 +58,7 @@ public class MyApplication3 extends JFrame{
   }
 
   public Dimension getPreferredSize(){
-    return new Dimension(350,450);
+    return new Dimension(550,450);
   }
 
   public static void main(String[] args){

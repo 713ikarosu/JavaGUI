@@ -9,6 +9,7 @@ public class OvalState extends State {
 
   public void mouseDown(int x,int y){
     oval = new MyOval(x,y,0,0); // 戦略2-1:幅，高さ０のインスタンス生成
+    oval.isShadow = stateManager.shadowState; // isShadow 更新
     stateManager.addDrawing(oval);
     x1 = x;
     y1 = y;

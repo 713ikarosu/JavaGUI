@@ -7,6 +7,8 @@ public class MyDrawing {
 	private int lineWidth; // 線の太さ
 	private int len; //外接円の半径の長さ(多角形)
 
+	boolean isShadow = false; // 影の有無
+
 	public MyDrawing() {
 		x = y = 0;
 		w = h = 40;
@@ -24,6 +26,10 @@ public class MyDrawing {
 		// オブジェクトを移動する処理を書く
 		this.x += dx;
 		this.y += dy;
+	}
+
+	public boolean getShadow(){ // 影の有無の取得
+		return isShadow;
 	}
 
 	public void setLocation(int x, int y) {

@@ -9,6 +9,7 @@ public class OctaState extends State {
 
   public void mouseDown(int x,int y){
     octa = new MyOctagonal(x,y,0); // 戦略2-1: 外接半径０のインスタンス生成
+    octa.isShadow = stateManager.shadowState; // isShadow 更新
     stateManager.addDrawing(octa);
     x1 = x;
     y1 = y;

@@ -25,6 +25,15 @@ public class MyOval extends MyDrawing{
 		}
 
 		Graphics2D g2 = (Graphics2D) g;
+		if(getShadow()){
+			int x2 = x+10;
+			int y2 = y+10;
+			g2.setStroke(new BasicStroke(getLineWidth()));
+			g2.setColor(Color.black);
+			g2.fillOval(x2, y2, w, h);
+			g2.setColor(Color.black);
+			g2.drawOval(x2, y2, w, h);
+		}
 		g2.setStroke(new BasicStroke(getLineWidth()));
 		g2.setColor(getFillColor());
 		g2.fillOval(x, y, w, h);
