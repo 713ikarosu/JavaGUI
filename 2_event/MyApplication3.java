@@ -19,10 +19,10 @@ public class MyApplication3 extends JFrame{
 
     // RectButton rectButton = new RectButton(stateManager);
     // jp.add(rectButton);
-    // OvalButton ovalButton = new OvalButton(stateManager);
-    // jp.add(ovalButton);
-    // Rect3DButton rect3DButton = new Rect3DButton(stateManager);
-    // jp.add(rect3DButton);
+    OvalButton ovalButton = new OvalButton(stateManager);
+    jp.add(ovalButton);
+    Rect3DButton rect3DButton = new Rect3DButton(stateManager);
+    jp.add(rect3DButton);
 
     getContentPane().setLayout(new BorderLayout());
     getContentPane().add(jp, BorderLayout.NORTH);
@@ -32,15 +32,14 @@ public class MyApplication3 extends JFrame{
       // 現在の状態の mouseDown 処理の呼び出し
       public void mousePressed(MouseEvent e){
         stateManager.mouseDown(e.getX(),e.getY());
-        System.out.println("clicked.");
       }
     });
 
-    canvas.addMouseListener(new MouseAdapter(){
+    canvas.addMouseMotionListener(new MouseMotionAdapter(){
       // 現在の状態の mouseDrag 処理の呼び出し
       public void mouseDragged(MouseEvent e){
         stateManager.mouseDrag(e.getX(),e.getY());
-        System.out.println("dragged.");
+        canvas.repaint(); // 再描画
       }
     });
 
