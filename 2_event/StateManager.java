@@ -18,7 +18,6 @@ public class StateManager extends State{
   public void mouseDrag(int x,int y){
     state.mouseDrag(x,y);
   }
-
   public void addDrawing(MyDrawing d) {
     canvas.addDrawing(d);
   }

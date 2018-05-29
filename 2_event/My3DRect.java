@@ -1,7 +1,7 @@
 import java.awt.*;
 
 class My3DRect extends MyDrawing {
-  public My3DRect(int xpt, int ypt, int wp, int hp) {
+  public My3DRect(int xpt, int ypt, int wpt, int hpt) {
 		super();
 		setLocation(xpt,ypt);
 		setSize(wpt,hpt); // 大きさを指定
@@ -19,7 +19,7 @@ class My3DRect extends MyDrawing {
 		if (w < 0) {
 			x += w;
 			w *= -1;
-		} if (h < 0 ) {
+		} if (h < 0) {
 			y += h;
 			h *= -1;
 		}
