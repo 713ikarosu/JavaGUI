@@ -5,6 +5,9 @@ public class MyDrawing {
 	private int x, y, w, h; // X座標, Y座標, 幅, 高さ
 	private Color lineColor, fillColor; //線の色, 塗り色
 	private int lineWidth; // 線の太さ
+	boolean isSelected;
+	Shape region; // 包含判定用
+	final int SIZE = 7; // 選択表示短形に付く四角形の大きさ
 	private int len; //外接円の半径の長さ(多角形)
 
 	boolean isShadow = false; // 影の有無
@@ -16,10 +19,43 @@ public class MyDrawing {
 		lineColor = Color.black;
 		fillColor = Color.white;
 		lineWidth = 1;
+		setRegion();
 	}
 
 	public void draw(Graphics g) {
+		// 選択状態を表す四角形を描く
+		if(isSelected) {
+			g.setColor(Color.black);
+			g.fillRect(x+w/2-SIZE/2,y-SIZE/2,SIZE,SIZE);
+			g.fillRect(x-SIZE/2,y+h/2-SIZE/2,SIZE,SIZE);
+			g.fillRect(x+w/2-SIZE/2,y+h-SIZE/2,SIZE,SIZE);
+			g.fillRect(x+w-SIZE/2,y+h/2-SIZE/2,SIZE,SIZE);
+			g.fillRect(x-SIZE/2,y-SIZE/2,SIZE,SIZE);
+			g.fillRect(x+w-SIZE/2,y-SIZE/2,SIZE,SIZE);
+			g.fillRect(x-SIZE/2,y+h-SIZE/2,SIZE,SIZE);
+			g.fillRect(x+w-SIZE/2,y+h-SIZE/2,SIZE,SIZE);
+		}
+	}
 
+	public boolean getSelected(){
+		return isSelected;
+	}
+
+	public void setSelected(boolean isSelected) {
+		this.isSelected  = isSelected;
+	}
+
+	// 包含判定用のメソッド
+	public boolean contains(int x, int y) {
+		// MyDrawing を継承する子クラス内でそれぞれ定義する．
+		// 包含判定図形が短形ならば，例えば，
+		return region.contains(x,y);
+	}
+
+	public void setRegion(){
+		// MyDrawing を継承する子クラス内でそれぞれ定義する．
+		// 包含判定図形が短形ならば，例えば，
+		region = new Rectangle(x,y,w,h);
 	}
 
 	public void move(int dx, int dy) {

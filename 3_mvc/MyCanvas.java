@@ -3,27 +3,24 @@ import java.awt.*;
 import java.util.*;
 
 public class MyCanvas extends JPanel {
-  // 各図形を格納する Vector
-  private Vector<MyDrawing> drawings;
+  Mediator mediator;
 
-  public MyCanvas(){
-    setBackground(Color.white);
-
-    drawings = new Vector<MyDrawing>();
+  public MyCanvas() {
+    this.mediator = new Mediator(this);
+    setBackground(Color.while);
   }
 
-  public void paint(Graphics g) {
+  public Mediator getMediator(){
+    return mediator;
+  }
+
+  public void paint(Graphics g){
     super.paint(g);
-    for (MyDrawing d : drawings) {
+
+    Enumeration<MyDrawing> e = mediator.drawingsElements();
+    while (e.hasMoreElements()){
+      MyDrawing d = e.nextElement();
       d.draw(g);
     }
-  }
-
-  public void addDrawing(MyDrawing d) {
-    drawings.add(d);
-  }
-
-  public void removeDrawing(MyDrawing d) {
-    drawings.remove(d);
   }
 }
