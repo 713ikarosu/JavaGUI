@@ -11,7 +11,7 @@ public class MyApplication3 extends JFrame{
     super("My PainterApp");
 
     canvas = new MyCanvas();
-    mediator = new Mediator(canvas);
+    mediator = canvas.getMediator();
     canvas.setBackground(Color.white);
 
     JPanel jp = new JPanel();
