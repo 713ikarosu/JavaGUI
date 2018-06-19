@@ -5,17 +5,19 @@ import javax.swing.*;
 public class MyApplication3 extends JFrame{
   StateManager stateManager;
   MyCanvas canvas;
+  Mediator mediator;
 
   public MyApplication3(){
     super("My PainterApp");
 
     canvas = new MyCanvas();
+    mediator = new Mediator(canvas);
     canvas.setBackground(Color.white);
 
     JPanel jp = new JPanel();
     jp.setLayout(new FlowLayout());
 
-    stateManager = new StateManager(canvas);
+    stateManager = new StateManager(canvas, mediator);
 
     // ボタン配置
     OvalButton ovalButton = new OvalButton(stateManager);
@@ -25,10 +27,10 @@ public class MyApplication3 extends JFrame{
     OctaButton octaButton = new OctaButton(stateManager);
     jp.add(octaButton);
 
-    // checkbox 追加
-    JCheckBox shadowCheck = new JCheckBox("dropShadow");
-    shadowCheck.addItemListener(new ShadowCheckListener(stateManager));
-    jp.add(shadowCheck);
+    // // checkbox 追加
+    // JCheckBox shadowCheck = new JCheckBox("dropShadow");
+    // shadowCheck.addItemListener(new ShadowCheckListener(stateManager));
+    // jp.add(shadowCheck);
 
     getContentPane().setLayout(new BorderLayout());
     getContentPane().add(jp, BorderLayout.NORTH);
@@ -45,7 +47,7 @@ public class MyApplication3 extends JFrame{
       // 現在の状態の mouseDrag 処理の呼び出し
       public void mouseDragged(MouseEvent e){
         stateManager.mouseDrag(e.getX(),e.getY());
-        canvas.repaint(); // 再描画
+        mediator.repaint(); // 再描画
       }
     });
 

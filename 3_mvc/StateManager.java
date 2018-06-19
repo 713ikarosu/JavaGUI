@@ -1,11 +1,13 @@
 public class StateManager extends State{
   MyCanvas canvas;
+  Mediator mediator;
   State state;
   boolean shadowState; // ドロップシャドウの状態を保持
   int x, y;
 
-  public StateManager(MyCanvas canvas){
+  public StateManager(MyCanvas canvas, Mediator mediator){
     this.canvas = canvas;
+    this.mediator = mediator;
     setState(new OvalState(this));
     setShadowState(false);
   }
@@ -29,6 +31,6 @@ public class StateManager extends State{
     state.mouseDrag(x,y);
   }
   public void addDrawing(MyDrawing d) {
-    canvas.addDrawing(d);
+    mediator.addDrawing(d);
   }
 }

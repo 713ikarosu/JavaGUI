@@ -7,7 +7,7 @@ public class MyCanvas extends JPanel {
 
   public MyCanvas() {
     this.mediator = new Mediator(this);
-    setBackground(Color.while);
+    setBackground(Color.white);
   }
 
   public Mediator getMediator(){
@@ -17,7 +17,7 @@ public class MyCanvas extends JPanel {
   public void paint(Graphics g){
     super.paint(g);
 
-    Enumeration<MyDrawing> e = mediator.drawingsElements();
+    Enumeration<MyDrawing> e = mediator.drawingsElements(); // クラスライブラリEnumerationで走査
     while (e.hasMoreElements()){
       MyDrawing d = e.nextElement();
       d.draw(g);
