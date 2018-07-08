@@ -6,6 +6,7 @@ import javax.swing.*;
 public class Mediator implements Cloneable{
   Vector<MyDrawing> drawings;
   MyCanvas canvas;
+  // Vector<MyDrawing> selectDrawings = new Vector<MyDrawing>();
   MyDrawing selectedDrawings = null;
   MyDrawing buffer = null; // Cut,Copyバッファ
 
