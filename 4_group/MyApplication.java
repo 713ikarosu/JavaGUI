@@ -175,17 +175,21 @@ public class MyApplication extends JFrame implements ActionListener{
 
   class DeleteButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-      mediator.removeDrawing(mediator.selectedDrawings);
+      for (MyDrawing d : mediator.selectedDrawings){
+        mediator.removeDrawing(d);
+      }
       mediator.repaint();
     }
   }
 
   class ShadowButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-      if(mediator.selectedDrawings.isShadow != true){
-        mediator.selectedDrawings.isShadow = true;
-      } else {
-        mediator.selectedDrawings.isShadow = false;
+      for (MyDrawing d : mediator.selectedDrawings){
+        if(d.isShadow != true){
+          d.isShadow = true;
+        } else {
+          d.isShadow = false;
+        }
       }
       mediator.repaint();
     }
