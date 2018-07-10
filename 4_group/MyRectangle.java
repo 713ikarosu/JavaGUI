@@ -30,7 +30,8 @@ public class MyRectangle extends MyDrawing {
 		// 	g2.setStroke(new BasicStroke(getLineWidth()));
 		// }
 
-		g2.setStroke(new BasicStroke(getLineWidth()));
+		// g2.setStroke(new BasicStroke(getLineWidth()));
+		g2.setStroke(new MyDashStroke(getLineWidth()));
 
 		g2.setColor(getFillColor());
 		g2.fillRect(x,y,w,h);

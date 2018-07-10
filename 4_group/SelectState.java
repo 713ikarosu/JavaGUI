@@ -15,6 +15,9 @@ public class SelectState extends State {
       stateManager.mediator.setSelected(x,y);
       x1 = x;
       y1 = y;
+
+      // drawingsでfor文回してcontainsがすべてfalseならそこにオブジェクトは存在しない
+      // いなければ以下で短径を用意
       rect = new MyRectangle(x,y);
   }
   public void mouseUp(int x, int y) {}
