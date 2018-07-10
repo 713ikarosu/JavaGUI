@@ -4,7 +4,6 @@ public class SelectState extends State {
   StateManager stateManager;
   MyRectangle rect;
   int x1, y1;
-  boolean flag = false;
 
   public SelectState(StateManager stateManager) {
     this.stateManager = stateManager;
@@ -32,6 +31,5 @@ public class SelectState extends State {
         d.setRegion();
       }
       // stateManager.mediator.selectedDrawings.setRegion();
-
   }
 }

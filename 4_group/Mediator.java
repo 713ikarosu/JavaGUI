@@ -20,6 +20,9 @@ public class Mediator implements Cloneable{
   public void clearBuffer(){
     // buffer = null;
     buffer.clear();
+    // for(MyDrawing d : buffer){
+    //   d = null;
+    // }
   }
 
   public void copy(){
@@ -50,11 +53,17 @@ public class Mediator implements Cloneable{
     repaint();
   }
 
-  public void paste(int x, int y ){ // 次！！
-    Vector<MyDrawing> clone = (MyDrawing)buffer.clone();
-    clone.setLocation(x,y);
-    addDrawing(clone);
-    clone.setRegion();
+  public void paste(int x, int y){
+    // Vector<MyDrawing> clone = buffer.clone();
+    // clone.setLocation(x,y);
+    for (MyDrawing d : buffer){
+      MyDrawing clone = d.clone();
+      clone.setLocation(x,y);
+      addDrawing(clone);
+      clone.setRegion();
+    }
+    // addDrawing(clone);
+    // clone.setRegion();
     repaint();
   }
 
@@ -100,7 +109,7 @@ public class Mediator implements Cloneable{
           s.setSelected(false);
           for (int i=0; i < selectedDrawings.size();i++){ // 書き換え
             MyDrawing t = selectedDrawings.elementAt(i);
-            if(t.getSelected()) continue;
+            if(t.equals(d)) continue;
             selectedDrawings.removeElementAt(i);
           }
           // for (MyDrawing t : selectedDrawings){
@@ -108,6 +117,7 @@ public class Mediator implements Cloneable{
           //   t.removeDrawing();
           // }
         }
+
         repaint();
       } else {
         d.setSelected(false);
