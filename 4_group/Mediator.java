@@ -100,29 +100,46 @@ public class Mediator implements Cloneable{
     // setSelected(int x, int y)メソッドは、点(x, y)にある図形を選択状態にするためのものです。 drawingsに図形を追加する順番と表示される順番を考慮して、点(x, y)を含む図形が複数ある場合は一番手前にある図形を選択状態にできるように注意して実装する必要があるでしょう。
     // 一番手前→より後に追加された方
     // Vector 格納されている図形のうち，contains(x,y)→true となり，なおかつその中で一番後に Vector に格納されたものを selectDrawing へ格納
-    for (MyDrawing d : drawings){
-      if(d.contains(x,y)){
-        setSelectedDrawings(d);
-        d.setSelected(true);
-        for (MyDrawing s : drawings){
-          if (s.equals(d)) continue;
-          s.setSelected(false);
-          for (int i=0; i < selectedDrawings.size();i++){ // 書き換え
-            MyDrawing t = selectedDrawings.elementAt(i);
-            if(t.equals(d)) continue;
-            selectedDrawings.removeElementAt(i);
+    // for (MyDrawing d : drawings){
+    //   if(d.contains(x,y)){
+    //     setSelectedDrawings(d);
+    //     d.setSelected(true);
+    //     for (MyDrawing s : drawings){
+    //       if (s.equals(d)) continue;
+    //       s.setSelected(false);
+    //       for (int i=0; i < selectedDrawings.size();i++){ // 書き換え
+    //         MyDrawing t = selectedDrawings.elementAt(i);
+    //         if(t.equals(d)) continue;
+    //         selectedDrawings.removeElementAt(i);
+    //       }
+    //       // for (MyDrawing t : selectedDrawings){
+    //       //   if(t.equals(d)) continue;
+    //       //   t.removeDrawing();
+    //       // }
+    //     }
+    //     repaint();
+    //   } else {
+    //     d.setSelected(false);
+    //     repaint();
+    //   }
+      // -----
+      for (int i=drawings.size()-1;i >= 0;i--){
+        MyDrawing d = drawings.elementAt(i);
+        if(d.contains(x,y)){
+          setSelectedDrawings(d);
+          d.setSelected(true);
+          for(int j = 0;j < selectedDrawings.size();j++){
+            MyDrawing e = selectedDrawings.elementAt(j);
+            if(!e.equals(d)) {
+              selectedDrawings.removeElementAt(j);
+              e.setSelected(false);
+            }
           }
-          // for (MyDrawing t : selectedDrawings){
-          //   if(t.equals(d)) continue;
-          //   t.removeDrawing();
-          // }
+          break;
         }
-        repaint();
-      } else {
-        d.setSelected(false);
-        repaint();
       }
-    }
+      repaint();
+
     // アホな書き方をしていたのでリファクタリング(笑)
     // Enumeration<MyDrawing> e = drawingsElements();
     // while(e.hasMoreElements()){
