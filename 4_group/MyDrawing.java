@@ -1,8 +1,9 @@
 import java.awt.*;
 import javax.swing.*;
 import java.util.Date;
+import java.io.*;
 
-public class MyDrawing implements Cloneable{
+public class MyDrawing implements Cloneable, Serializable{
 	private int x, y, w, h; // X座標, Y座標, 幅, 高さ
 	private Color lineColor, fillColor; //線の色, 塗り色
 	private int lineWidth; // 線の太さ

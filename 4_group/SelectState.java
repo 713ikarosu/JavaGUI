@@ -70,9 +70,10 @@ public class SelectState extends State {
       } else {
         int dx = x - x1;
         int dy = y - y1;
-        for (MyDrawing d : stateManager.mediator.selectedDrawings){
-          d.move(dx,dy);
-        }
+        // for (MyDrawing d : stateManager.mediator.selectedDrawings){
+        //   d.move(dx,dy);
+        // }
+        stateManager.mediator.move(dx,dy);
         x1 = x;
         y1 = y;
         // stateManager.mediator.repaint();
