@@ -4,6 +4,7 @@ public class MyRectangle extends MyDrawing {
 	public MyRectangle(int xpt, int ypt) {
 		super();
 		setLocation(xpt,ypt);
+		setSize(0,0);
 	}
 
 	public void draw(Graphics g) {
@@ -33,8 +34,8 @@ public class MyRectangle extends MyDrawing {
 		// g2.setStroke(new BasicStroke(getLineWidth()));
 		g2.setStroke(new MyDashStroke(getLineWidth()));
 
-		g2.setColor(getFillColor());
-		g2.fillRect(x,y,w,h);
+		// g2.setColor(getFillColor());
+		// g2.fillRect(x,y,w,h);
 		g2.setColor(getLineColor());
 		g2.drawRect(x,y,w,h);
 	}

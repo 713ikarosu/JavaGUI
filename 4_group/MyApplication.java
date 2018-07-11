@@ -121,6 +121,12 @@ public class MyApplication extends JFrame implements ActionListener{
       }
     });
 
+    canvas.addMouseListener(new MouseAdapter(){
+      public void mouseReleased(MouseEvent e){
+        stateManager.mouseUp(e.getX(),e.getY());
+      }
+    });
+
     canvas.addMouseMotionListener(new MouseMotionAdapter(){
       // 現在の状態の mouseDrag 処理の呼び出し
       public void mouseDragged(MouseEvent e){
