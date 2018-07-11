@@ -43,7 +43,6 @@ public class SelectState extends State {
           }
         }
       }
-
       stateManager.mediator.removeDrawing(rect);
       stateManager.mediator.repaint();
       flag = false;
