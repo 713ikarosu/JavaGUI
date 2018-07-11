@@ -117,7 +117,6 @@ public class Mediator implements Cloneable{
           //   t.removeDrawing();
           // }
         }
-
         repaint();
       } else {
         d.setSelected(false);

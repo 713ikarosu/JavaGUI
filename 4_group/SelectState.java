@@ -25,8 +25,7 @@ public class SelectState extends State {
         } else {
           flag = true;
         }
-        // いなければ以下で短径を用意
-
+        // いなければ短径を用意
         // flag = true;
       }
       if(flag){
@@ -35,9 +34,20 @@ public class SelectState extends State {
       }
   }
   public void mouseUp(int x, int y) {
-    stateManager.mediator.removeDrawing(rect);
-    stateManager.mediator.repaint();
-    flag = false;
+    if(flag){
+      for (MyDrawing d : stateManager.mediator.drawings){
+        if(rect.getX()<d.getX()&&d.getX()+d.getW()<rect.getX()+rect.getW()){
+          if(rect.getY()<d.getY()&&d.getY()+d.getH()<rect.getY()+rect.getH()){
+            stateManager.mediator.setSelectedDrawings(d);
+            d.setSelected(true);
+          }
+        }
+      }
+
+      stateManager.mediator.removeDrawing(rect);
+      stateManager.mediator.repaint();
+      flag = false;
+    }
   }
   public void mouseDrag(int x, int y) {
       // int dx = x - x1;
