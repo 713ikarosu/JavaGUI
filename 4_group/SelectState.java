@@ -13,24 +13,41 @@ public class SelectState extends State {
   public void mouseDown(int x, int y) {
       // どの図形が選択されているかのための計算
       // 選択状態へ変更
-      stateManager.mediator.setSelected(x,y);
+      // -------
+      // boolean flagMini = true;
+      // for(MyDrawing d : stateManager.mediator.drawings){
+      //   // なんかおる→false, なんもおらん→true
+      //   if(d.contains(x,y)) {
+      //     flagMini = false;
+      //     break;
+      //   }
+      // }
+
       x1 = x;
       y1 = y;
 
       // drawingsでfor文回してcontainsがすべてfalseならそこにオブジェクトは存在しない
       for (MyDrawing d : stateManager.mediator.drawings){
-        if(d.contains(x,y)) {
+        if(d.contains(x,y)) { // 存在
           flag = false;
           break;
-        } else {
+        } else { // 存在しない
           flag = true;
         }
         // いなければ短径を用意
-        // flag = true;
       }
-      if(flag){
+      if(flag){ // 何も存在しない
+        for(int i = 0;i < stateManager.mediator.selectedDrawings.size();i++){ // 全部の選択解除
+          MyDrawing e = stateManager.mediator.selectedDrawings.elementAt(i);
+          stateManager.mediator.selectedDrawings.removeElementAt(i);
+          e.setSelected(false);
+        }
         rect = new MyRectangle(x,y);
         stateManager.addDrawing(rect);
+      } else {
+        if(stateManager.mediator.selectedDrawings.size()<=1){ // ||!d.contains(x,y)
+          stateManager.mediator.setSelected(x,y);
+        }
       }
   }
   public void mouseUp(int x, int y) {

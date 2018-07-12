@@ -126,8 +126,7 @@ public class Mediator implements Cloneable{
       for (int i=drawings.size()-1;i >= 0;i--){
         MyDrawing d = drawings.elementAt(i);
         if(d.contains(x,y)){
-          setSelectedDrawings(d);
-          d.setSelected(true);
+          if(!selectedDrawings.contains(d)) setSelectedDrawings(d); // 連続で選択されても大丈夫なように
           for(int j = 0;j < selectedDrawings.size();j++){
             MyDrawing e = selectedDrawings.elementAt(j);
             if(!e.equals(d)) {
@@ -139,6 +138,8 @@ public class Mediator implements Cloneable{
         }
       }
       repaint();
+
+    // ----
 
     // アホな書き方をしていたのでリファクタリング(笑)
     // Enumeration<MyDrawing> e = drawingsElements();
@@ -168,6 +169,7 @@ public class Mediator implements Cloneable{
   public void setSelectedDrawings(MyDrawing d){
     // this.selectedDrawings = d;
     this.selectedDrawings.add(d);
+    d.setSelected(true);
     // d.setSelected(true);
   }
 
