@@ -2,16 +2,16 @@ import java.io.*;
 import java.awt.geom.Line2D;
 import java.util.*;
 
-public class File extends MyDrawing {
+public class FileStream extends MyDrawing {
   // transient protected Line2D.Double from, to;
   Vector v;
 
-  public File(){}
+  public FileStream(){}
 
   // File入力
-  public Vector fileInput(){
+  public Vector fileInput(File file){
     try {
-      FileInputStream fin = new FileInputStream("file.txt");
+      FileInputStream fin = new FileInputStream(file);
       ObjectInputStream in = new ObjectInputStream(fin);
 
       v = (Vector)in.readObject();
@@ -22,9 +22,9 @@ public class File extends MyDrawing {
   }
 
   // File 出力
-  public void fileOutput(Vector v){
+  public void fileOutput(Vector v,File file){
     try {
-      FileOutputStream fout = new FileOutputStream("file.txt");
+      FileOutputStream fout = new FileOutputStream(file);
       ObjectOutputStream out = new ObjectOutputStream(fout);
 
       out.writeObject(v);

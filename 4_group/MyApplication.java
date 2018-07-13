@@ -1,12 +1,13 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.*;
 
 public class MyApplication extends JFrame implements ActionListener{
   StateManager stateManager;
   MyCanvas canvas;
   Mediator mediator;
-  File file; // ファイル入出力
+  FileStream filest; // ファイル入出力
 
   private JMenuBar menuBar; //追加
   private JMenu colorMenu;
@@ -210,17 +211,30 @@ public class MyApplication extends JFrame implements ActionListener{
 
   class SaveButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-      file = new File();
-      file.fileOutput(mediator.drawings);
-      System.out.println("saved!");
+      JFileChooser fc = new JFileChooser();
+
+      int returnVal = fc.showOpenDialog(null);
+
+      if(returnVal == JFileChooser.APPROVE_OPTION){
+        filest = new FileStream();
+        File file = fc.getSelectedFile();
+        filest.fileOutput(mediator.drawings,file);
+      }
     }
   }
 
   class LoadButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-      mediator.drawings = file.fileInput();
-      System.out.println("loaded!");
-      mediator.repaint();
+      JFileChooser fc = new JFileChooser();
+
+      int returnVal = fc.showOpenDialog(null);
+
+      if(returnVal == JFileChooser.APPROVE_OPTION){
+        File file = fc.getSelectedFile();
+        mediator.drawings = filest.fileInput(file);
+        mediator.repaint();
+      }
+
     }
   }
 
