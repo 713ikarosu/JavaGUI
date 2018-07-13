@@ -6,6 +6,7 @@ public class MyApplication extends JFrame implements ActionListener{
   StateManager stateManager;
   MyCanvas canvas;
   Mediator mediator;
+  File file; // ファイル入出力
 
   private JMenuBar menuBar; //追加
   private JMenu colorMenu;
@@ -19,6 +20,8 @@ public class MyApplication extends JFrame implements ActionListener{
 
   public MyApplication(){
     super("My PainterApp");
+
+
 
     menuBar = new JMenuBar(); // 追加
     setJMenuBar(menuBar);
@@ -83,14 +86,18 @@ public class MyApplication extends JFrame implements ActionListener{
     jp.add(ovalButton);
     Rect3DButton rect3DButton = new Rect3DButton(stateManager);
     jp.add(rect3DButton);
-    // OctaButton octaButton = new OctaButton(stateManager);
-    // jp.add(octaButton);
     Button deleteButton = new Button("Delete");
     deleteButton.addActionListener(new DeleteButtonListener());
     jp.add(deleteButton);
     Button shadowButton = new Button("Shadow");
     shadowButton.addActionListener(new ShadowButtonListener());
     jp.add(shadowButton);
+    Button saveButton = new Button("Save");
+    saveButton.addActionListener(new SaveButtonListener());
+    jp.add(saveButton);
+    Button loadButton = new Button("Load");
+    loadButton.addActionListener(new LoadButtonListener());
+    jp.add(loadButton);
 
     // // checkbox 追加
     // JCheckBox shadowCheck = new JCheckBox("dropShadow");
@@ -170,7 +177,7 @@ public class MyApplication extends JFrame implements ActionListener{
   }
 
   public Dimension getPreferredSize(){
-    return new Dimension(550,450);
+    return new Dimension(650,550);
   }
 
   public static void main(String[] args){
@@ -197,6 +204,22 @@ public class MyApplication extends JFrame implements ActionListener{
           d.isShadow = false;
         }
       }
+      mediator.repaint();
+    }
+  }
+
+  class SaveButtonListener implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      file = new File();
+      file.fileOutput(mediator.drawings);
+      System.out.println("saved!");
+    }
+  }
+
+  class LoadButtonListener implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      mediator.drawings = file.fileInput();
+      System.out.println("loaded!");
       mediator.repaint();
     }
   }
