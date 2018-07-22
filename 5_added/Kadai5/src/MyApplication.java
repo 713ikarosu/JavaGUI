@@ -1,7 +1,23 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.io.*;
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 public class MyApplication extends JFrame implements ActionListener{
   StateManager stateManager;
@@ -14,9 +30,11 @@ public class MyApplication extends JFrame implements ActionListener{
   private JMenu fcolorMenu;
   private JMenu lineWidthMenu;
   private JMenu copyCutMenu;
+  private JMenu alphaMenu;
   private JMenuItem redItem, blueItem, greenItem;
   private JMenuItem fredItem, fblueItem, fgreenItem;
   private JMenuItem firstItem, secondItem, thirdItem;
+  private JMenuItem lowItem, middleItem, highItem;
   private JMenuItem copyItem, cutItem;
 
   public MyApplication(){
@@ -70,6 +88,17 @@ public class MyApplication extends JFrame implements ActionListener{
     secondItem.addActionListener(this);
     thirdItem.addActionListener(this);
 
+    alphaMenu = new JMenu("Trancparency");
+    lowItem = new JMenuItem("64");
+    middleItem = new JMenuItem("128");
+    highItem = new JMenuItem("255");
+    alphaMenu.add(lowItem);
+    alphaMenu.add(middleItem);
+    alphaMenu.add(highItem);
+    lowItem.addActionListener(this);
+    middleItem.addActionListener(this);
+    highItem.addActionListener(this);
+
     copyCutMenu = new JMenu("Copy&Cut");
     copyItem = new JMenuItem("Copy");
     cutItem = new JMenuItem("Cut");
@@ -107,6 +136,7 @@ public class MyApplication extends JFrame implements ActionListener{
 
     menuBar.add(colorMenu); //追加
     menuBar.add(fcolorMenu); //追加
+    menuBar.add(alphaMenu); //追加
     menuBar.add(lineWidthMenu); // 追加
     menuBar.add(copyCutMenu); // 追加
 
@@ -174,6 +204,12 @@ public class MyApplication extends JFrame implements ActionListener{
       mediator.copy();
     } else if(e.getSource() == cutItem){
       mediator.cut();
+    } else if(e.getSource() == lowItem) {
+      mediator.setAlpha(64);
+    } else if(e.getSource() == middleItem) {
+      mediator.setAlpha(128);
+    } else if(e.getSource() == highItem) {
+      mediator.setAlpha(255);
     }
   }
 

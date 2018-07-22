@@ -1,7 +1,7 @@
+import java.awt.Color;
 import java.util.Enumeration;
 import java.util.Vector;
-import java.awt.*;
-import javax.swing.*;
+//import javax.swing.*;
 
 public class Mediator implements Cloneable{
   Vector<MyDrawing> drawings;
@@ -202,5 +202,14 @@ public class Mediator implements Cloneable{
       }
     }
     repaint();
+  }
+
+  public void setAlpha(int a) {
+	  for (MyDrawing d : selectedDrawings) {
+		  if(d != null) {
+			  d.setAlpha(a);
+		  }
+	  }
+	  repaint();
   }
 }

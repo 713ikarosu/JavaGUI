@@ -1,7 +1,10 @@
-import java.awt.*;
-import javax.swing.*;
-import java.util.Date;
-import java.io.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Shape;
+//import javax.swing.*;
+//import java.util.Date;
+import java.io.Serializable;
 
 public class MyDrawing implements Cloneable, Serializable{
 	private int x, y, w, h; // X座標, Y座標, 幅, 高さ
@@ -150,5 +153,10 @@ public class MyDrawing implements Cloneable, Serializable{
 	public Color getFillColor() {
 		// fillColor を取得
 		return fillColor;
+	}
+
+	public void setAlpha(int a) {
+		Color temp = fillColor;
+		fillColor = new Color(temp.getRed(),temp.getGreen(),temp.getBlue(),a);
 	}
 }
