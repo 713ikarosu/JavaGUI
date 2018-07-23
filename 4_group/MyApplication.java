@@ -21,9 +21,7 @@ public class MyApplication extends JFrame implements ActionListener{
 
   public MyApplication(){
     super("My PainterApp");
-
-
-
+    
     menuBar = new JMenuBar(); // 追加
     setJMenuBar(menuBar);
 

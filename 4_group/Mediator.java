@@ -180,10 +180,6 @@ public class Mediator implements Cloneable{
       }
     }
     repaint();
-    // if(selectedDrawings != null){
-    //   selectedDrawings.setLineColor(color);
-    //   repaint();
-    // }
   }
 
   public void setfColor(Color color){
