@@ -32,4 +32,7 @@ public class StateManager extends State{
   public void addDrawing(MyDrawing d) {
     mediator.addDrawing(d);
   }
+  public void mouseMoved(int x, int y) {
+	  state.mouseMoved(x,y);
+  }
 }

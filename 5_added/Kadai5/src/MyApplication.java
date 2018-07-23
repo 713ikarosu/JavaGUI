@@ -25,6 +25,7 @@ public class MyApplication extends JFrame implements ActionListener{
   Mediator mediator;
   FileStream filest; // ファイル入出力
 
+
   private JMenuBar menuBar; //追加
   private JMenu colorMenu;
   private JMenu fcolorMenu;
@@ -39,8 +40,6 @@ public class MyApplication extends JFrame implements ActionListener{
 
   public MyApplication(){
     super("My PainterApp");
-
-
 
     menuBar = new JMenuBar(); // 追加
     setJMenuBar(menuBar);
@@ -171,6 +170,20 @@ public class MyApplication extends JFrame implements ActionListener{
         stateManager.mouseDrag(e.getX(),e.getY());
         mediator.repaint(); // 再描画
       }
+    });
+
+    canvas.addMouseMotionListener(new MouseMotionAdapter() { // カーソル変化
+    	public void mouseMoved(MouseEvent e) {
+//    		for(MyDrawing d : mediator.drawings) {
+//    			if(d.contains(e.getX(),e.getY())){
+//    				canvas.setCursor(moveCursor);
+//    				break;
+//    			}
+//    			canvas.setCursor(defCursor);
+//    		}
+    		stateManager.mouseMoved(e.getX(), e.getY());
+    		mediator.repaint();
+    	}
     });
 
     this.addWindowListener(new WindowAdapter(){

@@ -1,8 +1,14 @@
+import java.awt.Cursor;
+
 public class SelectState extends State {
   StateManager stateManager;
   MyRectangle rect;
   int x1, y1;
   boolean flag = false;
+  public static int DEFAULT_CURSOR = 0;
+  public static int MOVE_CURSOR = 13;
+  Cursor defCursor = new Cursor(DEFAULT_CURSOR);
+  Cursor moveCursor = new Cursor(MOVE_CURSOR);
 
   public SelectState(StateManager stateManager) {
     this.stateManager = stateManager;
@@ -98,5 +104,14 @@ public class SelectState extends State {
         }
       }
       // stateManager.mediator.selectedDrawings.setRegion();
+  }
+  public void mouseMoved(int x, int y) {
+	  for(MyDrawing d : stateManager.mediator.drawings) {
+			if(d.contains(x,y)){
+				stateManager.mediator.canvas.setCursor(moveCursor);
+				break;
+			}
+			stateManager.mediator.canvas.setCursor(defCursor);
+		}
   }
 }
