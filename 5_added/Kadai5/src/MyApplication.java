@@ -306,7 +306,7 @@ public class MyApplication extends JFrame implements ActionListener{
 		  if(returnVal == JFileChooser.APPROVE_OPTION) {
 			  File file = fc.getSelectedFile();
 			  mediator.drawings.addElement(filest2.fileInput2(file));
-			  mediator.drawings.lastElement().setLocation(10,10);
+//			  mediator.drawings.lastElement().setLocation(10,10);
 			  mediator.repaint();
 		  }
 	  }

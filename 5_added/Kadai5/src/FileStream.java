@@ -42,11 +42,12 @@ public class FileStream extends MyDrawing {
   // 画像ファイル入力用
   public MyImage fileInput2(File file) {
 	  try {
-	      FileInputStream fin = new FileInputStream(file);
-	      ObjectInputStream in = new ObjectInputStream(fin);
-
-	      myImage = new MyImage((File)in.readObject());
-	      fin.close();
+//	      FileInputStream fin = new FileInputStream(file);
+//	      ObjectInputStream in = new ObjectInputStream(fin);
+//
+//	      myImage = new MyImage((File)in.readObject());
+//	      fin.close();
+		  myImage = new MyImage(file);
 	    } catch(Exception ex){
 	    }
 	    return myImage;

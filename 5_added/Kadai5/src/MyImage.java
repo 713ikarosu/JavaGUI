@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +9,7 @@ import javax.imageio.ImageIO;
 
 public class MyImage extends MyDrawing {
 	File file;
+	Image image;
 
 	public MyImage(File file) {
 		this.file = file;
@@ -31,12 +33,12 @@ public class MyImage extends MyDrawing {
 		}
 
 		Graphics2D g2 = (Graphics2D) g;
+
 		try {
 			BufferedImage image = ImageIO.read(file);
-			g2.drawImage(image,null,10,10);
+			g2.drawImage(image, null,10,10);
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 }
