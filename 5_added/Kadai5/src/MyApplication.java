@@ -24,6 +24,7 @@ public class MyApplication extends JFrame implements ActionListener{
   MyCanvas canvas;
   Mediator mediator;
   FileStream filest; // ファイル入出力
+  FileStream filest2; // 画像入力用
 
 
   private JMenuBar menuBar; //追加
@@ -135,6 +136,9 @@ public class MyApplication extends JFrame implements ActionListener{
     Button loadButton = new Button("Load");
     loadButton.addActionListener(new LoadButtonListener());
     jp.add(loadButton);
+    Button pictureButton = new Button("Pic");
+    pictureButton.addActionListener(new PictureButtonListener());
+    jp.add(pictureButton);
 
     // // checkbox 追加
     // JCheckBox shadowCheck = new JCheckBox("dropShadow");
@@ -183,13 +187,6 @@ public class MyApplication extends JFrame implements ActionListener{
 
     canvas.addMouseMotionListener(new MouseMotionAdapter() { // カーソル変化
     	public void mouseMoved(MouseEvent e) {
-//    		for(MyDrawing d : mediator.drawings) {
-//    			if(d.contains(e.getX(),e.getY())){
-//    				canvas.setCursor(moveCursor);
-//    				break;
-//    			}
-//    			canvas.setCursor(defCursor);
-//    		}
     		stateManager.mouseMoved(e.getX(), e.getY());
     		mediator.repaint();
     	}
@@ -298,6 +295,21 @@ public class MyApplication extends JFrame implements ActionListener{
       }
 
     }
+  }
+
+  class PictureButtonListener implements ActionListener {
+	  public void actionPerformed(ActionEvent e) {
+		  JFileChooser fc = new JFileChooser();
+
+		  int returnVal = fc.showOpenDialog(null);
+
+		  if(returnVal == JFileChooser.APPROVE_OPTION) {
+			  File file = fc.getSelectedFile();
+			  mediator.drawings.addElement(filest2.fileInput2(file));
+			  mediator.drawings.lastElement().setLocation(10,10);
+			  mediator.repaint();
+		  }
+	  }
   }
 
 }
