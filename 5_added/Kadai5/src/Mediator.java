@@ -212,4 +212,26 @@ public class Mediator implements Cloneable{
 	  }
 	  repaint();
   }
+
+  public void setForemost() { // a -> インデックス
+	  for(MyDrawing d : selectedDrawings) {
+		  removeDrawing(d);
+	  } // 選択項目をすべて削除
+	  for(MyDrawing d : selectedDrawings) {
+		  drawings.add(d);
+	  }
+	  repaint();
+  }
+
+  public void setLast() {
+	  for(MyDrawing d : selectedDrawings) {
+		  removeDrawing(d);
+	  }
+	  for(int i=0;i<selectedDrawings.size();i++) {
+		  MyDrawing d = selectedDrawings.elementAt(i);
+		  drawings.add(0,d);
+	  }
+	  repaint();
+
+  }
 }

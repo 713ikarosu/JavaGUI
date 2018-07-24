@@ -32,11 +32,13 @@ public class MyApplication extends JFrame implements ActionListener{
   private JMenu lineWidthMenu;
   private JMenu copyCutMenu;
   private JMenu alphaMenu;
+  private JMenu overlapMenu;
   private JMenuItem redItem, blueItem, greenItem;
   private JMenuItem fredItem, fblueItem, fgreenItem;
   private JMenuItem firstItem, secondItem, thirdItem;
   private JMenuItem lowItem, middleItem, highItem;
   private JMenuItem copyItem, cutItem;
+  private JMenuItem foremostItem, lastItem;
 
   public MyApplication(){
     super("My PainterApp");
@@ -106,7 +108,13 @@ public class MyApplication extends JFrame implements ActionListener{
     copyItem.addActionListener(this);
     cutItem.addActionListener(this);
 
-
+    overlapMenu = new JMenu("OverLap");
+    foremostItem = new JMenuItem("ForeMost");
+    lastItem = new JMenuItem("Last");
+    overlapMenu.add(foremostItem);
+    overlapMenu.add(lastItem);
+    foremostItem.addActionListener(this);
+    lastItem.addActionListener(this);
 
     // ボタン配置
     SelectButton selectButton = new SelectButton(stateManager);
@@ -138,6 +146,7 @@ public class MyApplication extends JFrame implements ActionListener{
     menuBar.add(alphaMenu); //追加
     menuBar.add(lineWidthMenu); // 追加
     menuBar.add(copyCutMenu); // 追加
+    menuBar.add(overlapMenu);
 
     getContentPane().setLayout(new BorderLayout());
     getContentPane().add(jp, BorderLayout.NORTH);
@@ -223,6 +232,10 @@ public class MyApplication extends JFrame implements ActionListener{
       mediator.setAlpha(128);
     } else if(e.getSource() == highItem) {
       mediator.setAlpha(255);
+    } else if(e.getSource() == foremostItem) {
+      mediator.setForemost();  // 最前列へ
+    } else if(e.getSource() == lastItem) {
+      mediator.setLast(); // 最後列へ
     }
   }
 
