@@ -11,8 +11,11 @@ public class MyImage extends MyDrawing {
 	File file;
 	Image image;
 
-	public MyImage(File file) {
+	public MyImage(File file, int xpt, int ypt, int wpt, int hpt) {
+		super();
 		this.file = file;
+		setLocation(xpt,ypt);
+		setSize(wpt,hpt);
 	}
 
 	public void draw(Graphics g) {
@@ -36,7 +39,8 @@ public class MyImage extends MyDrawing {
 
 		try {
 			BufferedImage image = ImageIO.read(file);
-			g2.drawImage(image, null,10,10);
+//			g2.drawImage(image, null,10,10);
+			g2.drawImage(image, x, y, w, h, null);
 		} catch(IOException e) {
 			e.printStackTrace();
 		}

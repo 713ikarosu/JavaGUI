@@ -1,4 +1,7 @@
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class MyOval extends MyDrawing{
 	public MyOval(int xpt, int ypt, int wpt, int hpt) { // 課題2-1の時は，x,y 以外は初期値を利用
@@ -41,6 +44,6 @@ public class MyOval extends MyDrawing{
 		g2.fillOval(x, y, w, h);
 		g2.setColor(getLineColor());
 		g2.drawOval(x, y, w, h);
-		
+
 	}
 }
