@@ -53,6 +53,7 @@ public class MyApplication extends JFrame implements ActionListener{
 
     JPanel jp = new JPanel();
     jp.setLayout(new FlowLayout());
+//    jp.setLayout(new GridLayout(2,5));
 
     stateManager = new StateManager(canvas);
 
@@ -127,6 +128,9 @@ public class MyApplication extends JFrame implements ActionListener{
     Button deleteButton = new Button("Delete");
     deleteButton.addActionListener(new DeleteButtonListener());
     jp.add(deleteButton);
+    Button allDeleteButton = new Button("AllDelete");
+    allDeleteButton.addActionListener(new AllDeleteButtonListener());
+    jp.add(allDeleteButton);
     Button shadowButton = new Button("Shadow");
     shadowButton.addActionListener(new ShadowButtonListener());
     jp.add(shadowButton);
@@ -313,6 +317,13 @@ public class MyApplication extends JFrame implements ActionListener{
 //			  stateManager.setState(new SelectState(stateManager));
 			  mediator.repaint();
 		  }
+	  }
+  }
+
+  class AllDeleteButtonListener implements ActionListener {
+	  public void actionPerformed(ActionEvent e) {
+		  mediator.drawings.clear();
+		  mediator.repaint();
 	  }
   }
 

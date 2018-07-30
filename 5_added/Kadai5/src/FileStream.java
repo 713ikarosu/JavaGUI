@@ -47,7 +47,7 @@ public class FileStream extends MyDrawing {
 //
 //	      myImage = new MyImage((File)in.readObject());
 //	      fin.close();
-		  myImage = new MyImage(file);
+//		  myImage = new MyImage(file);
 	    } catch(Exception ex){
 	    }
 	    return myImage;
