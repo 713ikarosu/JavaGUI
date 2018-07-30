@@ -15,7 +15,7 @@ public class SelectState extends State {
   }
 
   public void mouseDown(int x, int y) {
-	  System.out.println(stateManager.mediator.drawings.size());
+//	  System.out.println(stateManager.mediator.drawings.size());
       // どの図形が選択されているかのための計算
       // 選択状態へ変更
       // -------
