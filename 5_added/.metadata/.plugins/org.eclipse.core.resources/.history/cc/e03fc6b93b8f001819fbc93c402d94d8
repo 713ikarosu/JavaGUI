@@ -1,0 +1,33 @@
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+
+public class MyImage extends MyDrawing {
+	public MyImage() {
+
+	}
+
+	public void draw(Graphics g) {
+		super.draw(g);
+
+		int x = getX();
+		int y = getY();
+		int w = getW();
+		int h = getH();
+
+		// 高さや横幅が負の時の為の処理
+		if (w < 0) {
+			x += w;
+			w *= -1;
+		} if (h < 0 ) {
+			y += h;
+			h *= -1;
+		}
+		try {
+			BufferedImage image = ImageIO.read(new File("C:\\beach.jpg"));
+			g2.drawImage(image,null,10,10):
+		} catch(IOException e)
+
+	}
+}

@@ -1,0 +1,10 @@
+
+public class ImageState extends State {
+	StateManager stateManager;
+	MyImage image;
+	int x1, y1;
+
+	public ImageState(StateManager statemanager) {
+
+	}
+}

@@ -1,0 +1,19 @@
+
+public class ImageState extends State {
+	StateManager stateManager;
+	MyImage image;
+	File file;
+	int x1, y1;
+
+	public ImageState(StateManager statemanager) {
+		this.stateManager = stateManager;
+	}
+
+	public void mouseDown(int x, int y) {
+		image = new MyImage(File file, x, y, 0,0);
+		image.isShadow = stateManager.shadowState;
+		stateManager.addDrawing(image);
+		x1 = x;
+		y1 = y;
+	}
+}
