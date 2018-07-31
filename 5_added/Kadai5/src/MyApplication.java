@@ -5,9 +5,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -146,6 +143,12 @@ public class MyApplication extends JFrame implements ActionListener{
     Button pictureButton = new Button("Pic");
     pictureButton.addActionListener(new PictureButtonListener());
     jp.add(pictureButton);
+    Button topButton = new Button("Top");
+    topButton.addActionListener(new TopButtonListener());
+    jp.add(topButton);
+    Button formButton = new Button("Form");
+    formButton.addActionListener(new FormButtonListener());
+    jp.add(formButton);
 
     // // checkbox 追加
     // JCheckBox shadowCheck = new JCheckBox("dropShadow");
@@ -199,24 +202,24 @@ public class MyApplication extends JFrame implements ActionListener{
     	}
     });
 
-    canvas.addKeyListener(new KeyAdapter() {
-    	public void keyPressed(KeyEvent e) {
-    		int keycode = e.getKeyCode();
-    		System.out.println(keycode);
-    		if (keycode == 70){
-    		    System.out.println("矢印上キーが押された");
-    		  }
-
-    		int mod = e.getModifiersEx();
-    		if((mod & InputEvent.SHIFT_DOWN_MASK) != 0) {
-    			System.out.println("Shift");
-    			if(keycode == KeyEvent.VK_F) {
-    				mediator.setForemost();
-
-    			}
-    		}
-    	}
-    });
+//    canvas.addKeyListener(new KeyAdapter() {
+//    	public void keyPressed(KeyEvent e) {
+//    		int keycode = e.getKeyCode();
+//    		System.out.println(keycode);
+//    		if (keycode == 70){
+//    		    System.out.println("矢印上キーが押された");
+//    		  }
+//
+//    		int mod = e.getModifiersEx();
+//    		if((mod & InputEvent.SHIFT_DOWN_MASK) != 0) {
+//    			System.out.println("Shift");
+//    			if(keycode == KeyEvent.VK_F) {
+//    				mediator.setForemost();
+//
+//    			}
+//    		}
+//    	}
+//    });
 
     this.addWindowListener(new WindowAdapter(){
       // ウィンドウ閉じたら終わり
@@ -263,7 +266,7 @@ public class MyApplication extends JFrame implements ActionListener{
   }
 
   public Dimension getPreferredSize(){
-    return new Dimension(650,550);
+    return new Dimension(950,750);
   }
 
   public static void main(String[] args){
@@ -346,6 +349,38 @@ public class MyApplication extends JFrame implements ActionListener{
 	  public void actionPerformed(ActionEvent e) {
 		  mediator.drawings.clear();
 		  mediator.repaint();
+	  }
+  }
+
+  class TopButtonListener implements ActionListener{
+	  public void actionPerformed(ActionEvent e) {
+		  for (MyDrawing d : mediator.drawings) {// 上端で整列
+			  int a = d.getX();
+			  d.setLocation(a,10);
+			  d.setRegion();
+			  mediator.repaint();
+		  }
+	  }
+  }
+
+  class FormButtonListener implements ActionListener{
+	  public void actionPerformed(ActionEvent e) {
+		  for (MyDrawing d : mediator.drawings) {// 形で整列
+			  int y = d.getY();
+			  switch(d.getFigID()) {
+			  case 1: // oval
+				  d.setLocation(10, y);
+				  break;
+			  case 2: // rect
+				  d.setLocation(310, y);
+				  break;
+			  case 3: // pic
+				  d.setLocation(610, y);
+				  break;
+			  }
+			  d.setRegion();
+			  mediator.repaint();
+		  }
 	  }
   }
 

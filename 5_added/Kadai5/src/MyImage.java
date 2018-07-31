@@ -16,6 +16,7 @@ public class MyImage extends MyDrawing {
 		this.file = file;
 		setLocation(xpt,ypt);
 		setSize(wpt,hpt);
+		figId = 3;
 	}
 
 	public void draw(Graphics g) {

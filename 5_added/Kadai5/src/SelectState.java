@@ -15,7 +15,6 @@ public class SelectState extends State {
   }
 
   public void mouseDown(int x, int y) {
-//	  System.out.println(stateManager.mediator.drawings.size());
       // どの図形が選択されているかのための計算
       // 選択状態へ変更
       // -------
@@ -42,9 +41,7 @@ public class SelectState extends State {
         // いなければ短径を用意
       }
       if(flag){ // 何も存在しない
-//    	System.out.println(stateManager.mediator.selectedDrawings.size());
         for(int i = 0;i < stateManager.mediator.selectedDrawings.size();i++){ // 全部の選択解除
-        	System.out.println(stateManager.mediator.selectedDrawings.size());
         	MyDrawing e = stateManager.mediator.selectedDrawings.elementAt(0);
         	e.setSelected(false);
         	stateManager.mediator.selectedDrawings.removeElementAt(0);
