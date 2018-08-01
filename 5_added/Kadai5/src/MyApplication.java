@@ -18,6 +18,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class MyApplication extends JFrame implements ActionListener{
   StateManager stateManager;
@@ -40,6 +43,7 @@ public class MyApplication extends JFrame implements ActionListener{
   private JMenuItem lowItem, middleItem, highItem;
   private JMenuItem copyItem, cutItem;
   private JMenuItem foremostItem, lastItem;
+  private JSlider tranceSlider;
 
   public MyApplication(){
     super("My PainterApp");
@@ -149,6 +153,10 @@ public class MyApplication extends JFrame implements ActionListener{
     Button formButton = new Button("Form");
     formButton.addActionListener(new FormButtonListener());
     jp.add(formButton);
+    JSlider tranceSlider = new JSlider(10,255,255);
+    tranceSlider.addChangeListener(new MySliderListener());
+    jp.add(tranceSlider);
+//    mediator.setAlpha(tranceSlider.getValue());
 
     // // checkbox 追加
     // JCheckBox shadowCheck = new JCheckBox("dropShadow");
@@ -383,5 +391,15 @@ public class MyApplication extends JFrame implements ActionListener{
 		  }
 	  }
   }
+
+  class MySliderListener implements ChangeListener{
+	  public void stateChanged(ChangeEvent e) {
+		  JSlider source = (JSlider)e.getSource();
+
+		  int tr = (int)source.getValue();
+		  mediator.setAlpha(tr);
+	  }
+  }
+
 
 }
