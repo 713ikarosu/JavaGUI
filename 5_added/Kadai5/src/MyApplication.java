@@ -18,6 +18,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -44,6 +45,7 @@ public class MyApplication extends JFrame implements ActionListener{
   private JMenuItem copyItem, cutItem;
   private JMenuItem foremostItem, lastItem;
   private JSlider tranceSlider;
+  private JPopupMenu popup;
 
   public MyApplication(){
     super("My PainterApp");
@@ -122,6 +124,14 @@ public class MyApplication extends JFrame implements ActionListener{
     foremostItem.addActionListener(this);
     lastItem.addActionListener(this);
 
+//    popup = new JPopupMenu();
+//    foremostItem = new JMenuItem("ForeMost");
+//    lastItem = new JMenuItem("Last");
+//    popup.add(foremostItem);
+//    popup.add(lastItem);
+//    foremostItem.addActionListener(this);
+//    lastItem.addActionListener(this);
+
     // ボタン配置
     SelectButton selectButton = new SelectButton(stateManager);
     jp.add(selectButton);
@@ -156,7 +166,6 @@ public class MyApplication extends JFrame implements ActionListener{
     JSlider tranceSlider = new JSlider(10,255,255);
     tranceSlider.addChangeListener(new MySliderListener());
     jp.add(tranceSlider);
-//    mediator.setAlpha(tranceSlider.getValue());
 
     // // checkbox 追加
     // JCheckBox shadowCheck = new JCheckBox("dropShadow");
@@ -168,7 +177,7 @@ public class MyApplication extends JFrame implements ActionListener{
     menuBar.add(alphaMenu); //追加
     menuBar.add(lineWidthMenu); // 追加
     menuBar.add(copyCutMenu); // 追加
-    menuBar.add(overlapMenu);
+//    menuBar.add(overlapMenu);
 
     getContentPane().setLayout(new BorderLayout());
     getContentPane().add(jp, BorderLayout.NORTH);
@@ -181,10 +190,11 @@ public class MyApplication extends JFrame implements ActionListener{
       public void mousePressed(MouseEvent e){
         int modi = e.getModifiersEx(); // getModifiersは非推奨
         if((modi&MouseEvent.BUTTON1_DOWN_MASK)!=0){
-          stateManager.mouseDown(e.getX(),e.getY());
+        	stateManager.mouseDown(e.getX(),e.getY());
         }
         if((modi&MouseEvent.BUTTON3_DOWN_MASK)!=0){
-          stateManager.mediator.paste(e.getX(),e.getY());
+//        	showPopup(e);
+        	stateManager.mediator.paste(e.getX(),e.getY());
         }
       }
     });
@@ -401,5 +411,9 @@ public class MyApplication extends JFrame implements ActionListener{
 	  }
   }
 
-
+  public void showPopup(MouseEvent e) {
+	  if(e.isPopupTrigger()) {
+		  popup.show(e.getComponent(), e.getX(), e.getY());
+	  }
+  }
 }

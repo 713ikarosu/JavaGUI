@@ -26,7 +26,6 @@ public class SelectState extends State {
       //     break;
       //   }
       // }
-
       x1 = x;
       y1 = y;
 
@@ -52,6 +51,7 @@ public class SelectState extends State {
         if(stateManager.mediator.selectedDrawings.size()<=1){ // ||!d.contains(x,y)
           stateManager.mediator.setSelected(x,y);
         }
+
       }
   }
   public void mouseUp(int x, int y) {
