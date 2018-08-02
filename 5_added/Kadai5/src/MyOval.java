@@ -8,6 +8,7 @@ public class MyOval extends MyDrawing{
 		super();
 		setLocation(xpt,ypt);
 		setSize(wpt,hpt);
+		figId = 1;
 		// setLineColor(lcolor); // 線の色を指定
     // setfillColor(fcolor); // 塗りつぶしの色を指定
 	}

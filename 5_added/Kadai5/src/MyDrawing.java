@@ -14,6 +14,11 @@ public class MyDrawing implements Cloneable, Serializable{
 	Shape region; // 包含判定用
 	final int SIZE = 7; // 選択表示短形に付く四角形の大きさ
 	private int len; //外接円の半径の長さ(多角形)
+	int figId; // 図形の種類を識別
+	// = 0 def
+	// = 1 oval
+	// = 2 rect
+	// = 3 pic
 
 	boolean isShadow = false; // 影の有無
 
@@ -24,6 +29,7 @@ public class MyDrawing implements Cloneable, Serializable{
 		lineColor = Color.black;
 		fillColor = Color.white;
 		lineWidth = 1;
+		figId = 0;
 		setRegion();
 	}
 
@@ -158,5 +164,9 @@ public class MyDrawing implements Cloneable, Serializable{
 	public void setAlpha(int a) {
 		Color temp = fillColor;
 		fillColor = new Color(temp.getRed(),temp.getGreen(),temp.getBlue(),a);
+	}
+
+	public int getFigID() {
+		return figId;
 	}
 }

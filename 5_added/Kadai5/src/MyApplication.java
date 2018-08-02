@@ -18,6 +18,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class MyApplication extends JFrame implements ActionListener{
   StateManager stateManager;
@@ -40,6 +44,8 @@ public class MyApplication extends JFrame implements ActionListener{
   private JMenuItem lowItem, middleItem, highItem;
   private JMenuItem copyItem, cutItem;
   private JMenuItem foremostItem, lastItem;
+  private JSlider tranceSlider;
+  private JPopupMenu popup;
 
   public MyApplication(){
     super("My PainterApp");
@@ -53,6 +59,7 @@ public class MyApplication extends JFrame implements ActionListener{
 
     JPanel jp = new JPanel();
     jp.setLayout(new FlowLayout());
+//    jp.setLayout(new GridLayout(2,5));
 
     stateManager = new StateManager(canvas);
 
@@ -117,6 +124,14 @@ public class MyApplication extends JFrame implements ActionListener{
     foremostItem.addActionListener(this);
     lastItem.addActionListener(this);
 
+//    popup = new JPopupMenu();
+//    foremostItem = new JMenuItem("ForeMost");
+//    lastItem = new JMenuItem("Last");
+//    popup.add(foremostItem);
+//    popup.add(lastItem);
+//    foremostItem.addActionListener(this);
+//    lastItem.addActionListener(this);
+
     // ボタン配置
     SelectButton selectButton = new SelectButton(stateManager);
     jp.add(selectButton);
@@ -127,6 +142,9 @@ public class MyApplication extends JFrame implements ActionListener{
     Button deleteButton = new Button("Delete");
     deleteButton.addActionListener(new DeleteButtonListener());
     jp.add(deleteButton);
+    Button allDeleteButton = new Button("AllDelete");
+    allDeleteButton.addActionListener(new AllDeleteButtonListener());
+    jp.add(allDeleteButton);
     Button shadowButton = new Button("Shadow");
     shadowButton.addActionListener(new ShadowButtonListener());
     jp.add(shadowButton);
@@ -139,6 +157,15 @@ public class MyApplication extends JFrame implements ActionListener{
     Button pictureButton = new Button("Pic");
     pictureButton.addActionListener(new PictureButtonListener());
     jp.add(pictureButton);
+    Button topButton = new Button("Top");
+    topButton.addActionListener(new TopButtonListener());
+    jp.add(topButton);
+    Button formButton = new Button("Form");
+    formButton.addActionListener(new FormButtonListener());
+    jp.add(formButton);
+    JSlider tranceSlider = new JSlider(10,255,255);
+    tranceSlider.addChangeListener(new MySliderListener());
+    jp.add(tranceSlider);
 
     // // checkbox 追加
     // JCheckBox shadowCheck = new JCheckBox("dropShadow");
@@ -150,7 +177,7 @@ public class MyApplication extends JFrame implements ActionListener{
     menuBar.add(alphaMenu); //追加
     menuBar.add(lineWidthMenu); // 追加
     menuBar.add(copyCutMenu); // 追加
-    menuBar.add(overlapMenu);
+//    menuBar.add(overlapMenu);
 
     getContentPane().setLayout(new BorderLayout());
     getContentPane().add(jp, BorderLayout.NORTH);
@@ -163,10 +190,11 @@ public class MyApplication extends JFrame implements ActionListener{
       public void mousePressed(MouseEvent e){
         int modi = e.getModifiersEx(); // getModifiersは非推奨
         if((modi&MouseEvent.BUTTON1_DOWN_MASK)!=0){
-          stateManager.mouseDown(e.getX(),e.getY());
+        	stateManager.mouseDown(e.getX(),e.getY());
         }
         if((modi&MouseEvent.BUTTON3_DOWN_MASK)!=0){
-          stateManager.mediator.paste(e.getX(),e.getY());
+//        	showPopup(e);
+        	stateManager.mediator.paste(e.getX(),e.getY());
         }
       }
     });
@@ -191,6 +219,25 @@ public class MyApplication extends JFrame implements ActionListener{
     		mediator.repaint();
     	}
     });
+
+//    canvas.addKeyListener(new KeyAdapter() {
+//    	public void keyPressed(KeyEvent e) {
+//    		int keycode = e.getKeyCode();
+//    		System.out.println(keycode);
+//    		if (keycode == 70){
+//    		    System.out.println("矢印上キーが押された");
+//    		  }
+//
+//    		int mod = e.getModifiersEx();
+//    		if((mod & InputEvent.SHIFT_DOWN_MASK) != 0) {
+//    			System.out.println("Shift");
+//    			if(keycode == KeyEvent.VK_F) {
+//    				mediator.setForemost();
+//
+//    			}
+//    		}
+//    	}
+//    });
 
     this.addWindowListener(new WindowAdapter(){
       // ウィンドウ閉じたら終わり
@@ -237,7 +284,7 @@ public class MyApplication extends JFrame implements ActionListener{
   }
 
   public Dimension getPreferredSize(){
-    return new Dimension(650,550);
+    return new Dimension(950,750);
   }
 
   public static void main(String[] args){
@@ -316,4 +363,57 @@ public class MyApplication extends JFrame implements ActionListener{
 	  }
   }
 
+  class AllDeleteButtonListener implements ActionListener {
+	  public void actionPerformed(ActionEvent e) {
+		  mediator.drawings.clear();
+		  mediator.repaint();
+	  }
+  }
+
+  class TopButtonListener implements ActionListener{
+	  public void actionPerformed(ActionEvent e) {
+		  for (MyDrawing d : mediator.drawings) {// 上端で整列
+			  int a = d.getX();
+			  d.setLocation(a,10);
+			  d.setRegion();
+			  mediator.repaint();
+		  }
+	  }
+  }
+
+  class FormButtonListener implements ActionListener{
+	  public void actionPerformed(ActionEvent e) {
+		  for (MyDrawing d : mediator.drawings) {// 形で整列
+			  int y = d.getY();
+			  switch(d.getFigID()) {
+			  case 1: // oval
+				  d.setLocation(10, y);
+				  break;
+			  case 2: // rect
+				  d.setLocation(310, y);
+				  break;
+			  case 3: // pic
+				  d.setLocation(610, y);
+				  break;
+			  }
+			  d.setRegion();
+			  mediator.repaint();
+		  }
+	  }
+  }
+
+  class MySliderListener implements ChangeListener{
+	  public void stateChanged(ChangeEvent e) {
+		  JSlider source = (JSlider)e.getSource();
+
+		  int tr = (int)source.getValue();
+		  mediator.setAlpha(tr);
+	  }
+  }
+
+  public void showPopup(MouseEvent e) {
+	  if(e.isPopupTrigger()) {
+		  popup.show(e.getComponent(), e.getX(), e.getY());
+	  }
+  }
 }

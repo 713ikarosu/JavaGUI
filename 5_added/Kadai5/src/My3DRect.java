@@ -1,17 +1,21 @@
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 class My3DRect extends MyDrawing {
   public My3DRect(int xpt, int ypt, int wpt, int hpt) {
 		super();
 		setLocation(xpt,ypt);
 		setSize(wpt,hpt); // 大きさを指定
+		figId = 2;
     // setLineColor(lcolor); // 線の色を指定
     // setfillColor(fcolor); // 塗りつぶしの色を指定
 	}
 
   public void draw(Graphics g) {
     super.draw(g);
-    
+
 		int x = getX();
 		int y = getY();
 		int w = getW();
